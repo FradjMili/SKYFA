@@ -3,7 +3,7 @@
   <div id="container">
     <div class="input">
       <input
-        v-model="searchkey"
+        v-model="searchQuery"
         type="search"
         id="search"
         placeholder="SEARCH..."
@@ -39,7 +39,7 @@ export default {
   },
   data: () => {
     return {
-      searchkey: "",
+      searchQuery: null,
       users: [],
     };
   },
