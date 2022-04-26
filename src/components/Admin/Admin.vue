@@ -6,6 +6,7 @@
         v-model="searchQuery"
         type="search"
         id="search"
+        @input="search()"
         placeholder="SEARCH..."
         autocomplete="off"
       />
@@ -15,7 +16,7 @@
         <h1 id="name">{{ elem.name }}</h1>
         <h2 id="email">{{ elem.email }}</h2>
          <div className="footer">
-            <button @click="delet(elem)"  id="btn">Remove</button>
+            <button @click="delet(elem)"   id="btn">Remove</button>
           </div>
         <div>
          
@@ -58,9 +59,30 @@ export default {
           });
         });
     },
+    search(){
+      this.users = this.users.filter(item => {
+            return item.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+        });
+    },
      
 
+  },
+
+    computed: {
+    resultQuery() {
+      if (this.searchQuery) {
+        return this.users.filter(item => {
+          return this.searchQuery
+            .toLowerCase()
+            .split(" ")
+            .every(v => item.title.toLowerCase().includes(v));
+        });
+      } else {
+        return this.users;
+      }
+    }
   }
+
 };
 </script>
 
